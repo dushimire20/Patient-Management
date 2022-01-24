@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Patient Mgt System</title>
+    <STYLE>
+         h1
+        {
+        text-align:center;
+        }
+        body
+        {
+        background-color: lightblue;
+        }
+
+    </STYLE>
+
+</head>
+<body>
+<h1>Patient management System</h1>
+
+    <!--Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/PatientList}">Patients</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/DoctorList}">Doctors</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/NurseList}">Nurses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/StaffList}">Staff</a>
+
+                </li>
+
+
+
+
+
+
+                <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Add New
+                     </a>
+                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                         <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#newPatientModal">Patient</a></li>
+                         <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#newDoctorModal">Doctor</a></li>
+                         <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#newNurseModal">Nurse</a></li>
+                         <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#newStaffModal">Staff</a></li>
+
+
+                     </ul>
+                 </li>
+
+
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+
+    <!--End of Navigation-->
+
+<!--Model for adding new patient below-->
+
+<div class="modal fade" id="newPatientModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form th:action="@{/addPatient}" method="post" th:object="${newPatient}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Patient</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="Patient-name" name="patientName" placeholder="Patient_name" required>
+                        <label for="Patient-name">Patient Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="Phone-number" name="PhoneNumber" placeholder="Phone_number" required>
+                        <label for="Phone-number">Phone Number</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
+                        <label for="address">Address</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="disease" name="desease" placeholder="Disease" required>
+                        <label for="disease">Disease</label>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!--Model for adding new Doctor below-->
+
+<div class="modal fade" id="newDoctorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form th:action="@{/addDoctor}" method="post" th:object="${newDoctor}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">New Doctor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="Doctor-name" name="doctorName" placeholder="Doctor_name" required>
+                        <label for="Patient-name">Doctor Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="Phone_number" name="phoneNumber" placeholder="Phone_number" required>
+                        <label for="Phone-number">Phone Number</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="Doctor-address" name="address" placeholder="Address" required>
+                        <label for="address">Room Number</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="specialist" name="specialist" placeholder="specialist" required>
+                        <label for="disease">Specialist</label>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--Model for adding new Nurse below-->
+
+<div class="modal fade" id="newNurseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form th:action="@{/addNurse}" method="post" th:object="${newNurse}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2">New Nurse</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="Nurse-name" name="nurseName" placeholder="Nurse_name" required>
+                        <label for="Patient-name">Nurse Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="Nurse_Phonenumber" name="phoneNumber" placeholder="Phone_number" required>
+                        <label for="Phone-number">Phone Number</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="Nurse-Shift" name="shift" placeholder="shift" required>
+                        <label for="address">Shift</label>
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--Model for adding new Staff below-->
+
+<div class="modal fade" id="newStaffModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form th:action="@{/addStaff}" method="post" th:object="${newStaff}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">New Staff</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="staff-name" name="staffName" placeholder="Staff_name" required>
+                        <label for="Patient-name">Staff Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="Staff-Room" name="officeNumber" placeholder="Office Room number" required>
+                        <label for="Phone-number">Office Room number</label>
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+</html>
